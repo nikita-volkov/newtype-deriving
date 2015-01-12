@@ -1,0 +1,43 @@
+language: haskell
+
+ghc:
+  - 7.6
+  - 7.8
+
+env:
+  - lower_bound_dependencies=1
+  - 
+
+install:
+  # Set up the Shell to treat the semicolon as &&
+  - set -o pipefail && set -e
+  # Update the Cabal database
+  - cabal update
+  # Switch to the distro:
+  - 
+    export pkg_name=$(cabal info . | awk '{print $2;exit}');
+    cabal sdist;
+    cd dist;
+    tar xzvf $pkg_name.tar.gz;
+    cd $pkg_name;
+  # Install the lower bound dependencies
+  - 
+    if [ $lower_bound_dependencies -eq 1 ];
+    then
+      constraint_options=(
+        "--constraint=transformers==0.3.*"
+      );
+    fi;
+  # Install the "haskell-src-exts" implicit dependency
+  - cabal install -j ${constraint_options[@]} happy
+  # Install the library dependencies
+  - cabal install -j ${constraint_options[@]} --only-dependencies
+  # Build the library
+  - cabal build
+  # Install the remaining dependencies
+  - cabal install -j --only-dependencies --enable-tests --enable-benchmarks --force-reinstalls
+  # Configure and build the remaining stuff
+  - cabal configure --enable-tests --enable-benchmarks && cabal build
+
+script:
+  - cabal test --show-details=always
