@@ -1,7 +1,7 @@
 name:
   newtype-deriving
 version:
-  0.1.0
+  0.1.1
 synopsis:
   Instance derivers for newtype wrappers
 description:
@@ -10,9 +10,9 @@ description:
   .
   Amongst others provides support for the \"monad-control\" classes:
   .
-  * @Control.Monad.Trans.Control.'Control.Monad.Trans.Control.MonadTransControl'@
+  * "Control.Monad.Trans.Control.MonadTransControl"
   .
-  * @Control.Monad.Trans.Control.'Control.Monad.Trans.Control.MonadBaseControl'@
+  * "Control.Monad.Trans.Control.MonadBaseControl"
 category:
   Control, Template Haskell
 homepage:
