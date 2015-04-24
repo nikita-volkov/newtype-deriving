@@ -1,7 +1,7 @@
 name:
   newtype-deriving
 version:
-  0.1.1
+  0.1.2
 synopsis:
   Instance derivers for newtype wrappers
 description:
@@ -58,12 +58,12 @@ library
   exposed-modules:
     NewtypeDeriving
   build-depends:
-    template-haskell >= 2.7 && < 2.10,
+    template-haskell >= 2.7 && < 2.11,
     monad-control >= 1.0 && < 1.1,
     transformers-base == 0.4.*,
     transformers >= 0.3 && < 0.5,
     base-prelude >= 0.1.3 && < 0.2,
-    base >= 4.7 && < 4.8
+    base >= 4.7 && < 4.9
 
 
 -- Well, it's not a benchmark actually, 
@@ -86,11 +86,11 @@ benchmark demo
     Haskell2010
   build-depends:
     newtype-deriving,
-    either >= 4.3 && < 4.4,
-    monad-control >= 1.0 && < 1.1,
-    transformers-base == 0.4.*,
-    transformers >= 0.3 && < 0.5,
-    base-prelude >= 0.1.3 && < 0.2,
-    base >= 4.7 && < 4.8
+    either,
+    monad-control,
+    transformers-base,
+    transformers,
+    base-prelude,
+    base
 
 
